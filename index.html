@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Ch Creates — Graphic Designer</title>
+  <meta name="description" content="Ch Creates — Brand Identity, Posters, Thumbnails & Social Media Creatives. Graphic Designer based in Andhra Pradesh, India." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --serif: 'Cormorant Garamond', serif;
+      --sans: 'DM Sans', sans-serif;
+      --truffle-dark:  #38240D;
+      --truffle-mid:   #713600;
+      --truffle-warm:  #C05800;
+      --truffle-cream: #FDFBD4;
+      --bg:      #FDFBD4;
+      --bg2:     #f5f3c2;
+      --ink:     #38240D;
+      --muted:   #713600;
+      --subtle:  #9a6a3a;
+      --accent:  #C05800;
+      --border:  rgba(56,36,13,0.14);
+    }
+
+    html { scroll-behavior: smooth; }
+    body { font-family: var(--sans); background: var(--bg); color: var(--ink); line-height: 1.6; }
+
+    .site { max-width: 820px; margin: 0 auto; padding: 0 1.5rem 5rem; }
+
+    /* NAV */
+    nav {
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 1.75rem 0; border-bottom: 0.5px solid var(--border);
+      position: sticky; top: 0; background: var(--bg); z-index: 100;
+    }
+    .logo { font-family: var(--serif); font-size: 22px; font-weight: 400; letter-spacing: 0.04em; color: var(--ink); }
+    .logo span { font-style: italic; color: var(--accent); }
+    .nav-links { display: flex; gap: 1.5rem; }
+    .nav-links a { font-size: 12px; color: var(--muted); text-decoration: none; letter-spacing: 0.08em; text-transform: uppercase; transition: color 0.2s; }
+    .nav-links a:hover { color: var(--ink); }
+
+    /* HERO */
+    .hero { padding: 4.5rem 0 3.5rem; }
+    .hero-eyebrow { font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--accent); margin-bottom: 1.2rem; display: flex; align-items: center; gap: 10px; }
+    .hero-eyebrow::before { content: ''; display: inline-block; width: 28px; height: 0.5px; background: var(--accent); }
+    .hero-title { font-family: var(--serif); font-size: clamp(42px,7vw,72px); font-weight: 300; line-height: 1.07; color: var(--ink); margin-bottom: 1.5rem; }
+    .hero-title em { font-style: italic; color: var(--accent); }
+    .hero-sub { font-size: 15px; color: var(--muted); line-height: 1.8; max-width: 420px; margin-bottom: 2rem; }
+    .hero-pills { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 2.5rem; }
+    .pill { font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; padding: 5px 14px; border-radius: 20px; border: 0.5px solid var(--border); color: var(--muted); }
+    .pill.active { border-color: var(--accent); color: var(--accent); background: rgba(192,88,0,0.07); }
+    .hero-cta { display: inline-flex; align-items: center; gap: 8px; font-size: 12px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--ink); text-decoration: none; border-bottom: 0.5px solid var(--ink); padding-bottom: 3px; transition: opacity 0.2s; }
+    .hero-cta:hover { opacity: 0.5; }
+
+    .divider { height: 0.5px; background: var(--border); margin: 2.5rem 0; }
+
+    .section-label { font-size: 10px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--subtle); margin-bottom: 1.5rem; display: flex; align-items: center; gap: 10px; }
+    .section-label::after { content: ''; flex: 1; height: 0.5px; background: var(--border); }
+
+    /* WORK GRID */
+    .work-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1px; background: var(--border); border: 0.5px solid var(--border); }
+    .work-card { background: var(--bg); cursor: pointer; transition: background 0.2s; position: relative; overflow: hidden; }
+    .work-card:hover { background: var(--bg2); }
+    .work-card:hover .card-arrow { opacity: 1; transform: translate(0,0); }
+    .work-thumb { width: 100%; aspect-ratio: 16/10; overflow: hidden; }
+    .work-thumb svg { width: 100%; height: 100%; display: block; }
+    .card-body { padding: 1rem 1.25rem 1.25rem; }
+    .card-tag { font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 0.35rem; }
+    .card-title { font-family: var(--serif); font-size: 19px; font-weight: 400; color: var(--ink); margin-bottom: 0.25rem; }
+    .card-desc { font-size: 12px; color: var(--muted); line-height: 1.55; }
+    .card-arrow { font-size: 16px; position: absolute; top: 1rem; right: 1.25rem; opacity: 0; transform: translate(-4px,4px); transition: all 0.25s; color: var(--accent); }
+
+    /* STATS */
+    .stats-band { display: grid; grid-template-columns: repeat(3,1fr); border: 0.5px solid var(--border); background: var(--border); gap: 1px; margin-bottom: 2.5rem; }
+    .stat-item { background: rgba(192,88,0,0.06); padding: 1.5rem 1.25rem; text-align: center; }
+    .stat-num { font-family: var(--serif); font-size: 38px; font-weight: 300; color: var(--accent); line-height: 1; margin-bottom: 0.4rem; }
+    .stat-label { font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); }
+
+    /* ABOUT */
+    .about-grid { display: grid; grid-template-columns: 1.2fr 1fr; gap: 3rem; align-items: start; }
+    .about-text { font-family: var(--serif); font-size: 20px; font-weight: 300; line-height: 1.65; color: var(--ink); margin-bottom: 1.2rem; }
+    .about-text em { font-style: italic; color: var(--accent); }
+    .about-note { font-size: 13px; color: var(--muted); line-height: 1.7; }
+    .detail-label { font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--subtle); margin-bottom: 0.3rem; }
+    .detail-val { font-size: 13px; color: var(--ink); margin-bottom: 1rem; }
+
+    /* SERVICES */
+    .services-list { display: grid; grid-template-columns: 1fr 1fr 1fr; border: 0.5px solid var(--border); }
+    .service-item { padding: 1.25rem; border-bottom: 0.5px solid var(--border); border-right: 0.5px solid var(--border); transition: background 0.2s; }
+    .service-item:hover { background: var(--bg2); }
+    .service-item:nth-child(3n) { border-right: none; }
+    .service-item:nth-last-child(-n+3) { border-bottom: none; }
+    .service-dot { width: 6px; height: 6px; border-radius: 50%; margin-bottom: 0.8rem; }
+    .service-name { font-family: var(--serif); font-size: 16px; font-weight: 400; color: var(--ink); margin-bottom: 0.3rem; }
+    .service-desc { font-size: 11px; color: var(--muted); line-height: 1.5; }
+
+    /* CONTACT */
+    .contact-wrap { padding: 2.5rem 0; }
+    .contact-title { font-family: var(--serif); font-size: clamp(28px,4vw,44px); font-weight: 300; line-height: 1.2; color: var(--ink); margin-bottom: 2rem; }
+    .contact-title em { font-style: italic; color: var(--accent); }
+    .contact-row { display: flex; align-items: center; justify-content: space-between; gap: 2rem; flex-wrap: wrap; }
+    .contact-email { font-size: 15px; color: var(--ink); text-decoration: none; border-bottom: 0.5px solid var(--border); padding-bottom: 2px; transition: border-color 0.2s, color 0.2s; }
+    .contact-email:hover { border-color: var(--accent); color: var(--accent); }
+    .social-links { display: flex; gap: 1.2rem; }
+    .social-links a { font-size: 12px; letter-spacing: 0.06em; text-transform: uppercase; color: var(--muted); text-decoration: none; transition: color 0.2s; }
+    .social-links a:hover { color: var(--accent); }
+
+    /* FOOTER */
+    .footer { display: flex; justify-content: space-between; align-items: center; padding-top: 1.5rem; border-top: 0.5px solid var(--border); margin-top: 2rem; }
+    .footer-copy { font-size: 11px; color: var(--subtle); }
+    .footer-name { font-family: var(--serif); font-size: 14px; color: var(--muted); font-style: italic; }
+
+    @media (max-width: 600px) {
+      .work-grid { grid-template-columns: 1fr; }
+      .about-grid { grid-template-columns: 1fr; gap: 1.5rem; }
+      .services-list { grid-template-columns: 1fr 1fr; }
+      .service-item:nth-child(3n) { border-right: 0.5px solid var(--border); }
+      .service-item:nth-child(2n) { border-right: none; }
+      .service-item:nth-last-child(-n+3) { border-bottom: 0.5px solid var(--border); }
+      .service-item:nth-last-child(-n+2) { border-bottom: none; }
+      .stats-band { grid-template-columns: 1fr; }
+      .contact-row { flex-direction: column; align-items: flex-start; }
+      .nav-links { gap: 1rem; }
+    }
+  </style>
+</head>
+<body>
+<div class="site">
+
+  <!-- NAV -->
+  <nav>
+    <div class="logo">Ch <span>Creates</span></div>
+    <div class="nav-links">
+      <a href="#work">Work</a>
+      <a href="#about">About</a>
+      <a href="#contact">Contact</a>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <div class="hero">
+    <p class="hero-eyebrow">Graphic Designer</p>
+    <h1 class="hero-title">Visuals that<br><em>captivate,</em><br>brands that last.</h1>
+    <p class="hero-sub">Brand identity, posters, thumbnails, and social creatives — designed with intention and built to stand out.</p>
+    <div class="hero-pills">
+      <span class="pill active">Brand &amp; Logo</span>
+      <span class="pill">Posters</span>
+      <span class="pill">Thumbnails</span>
+      <span class="pill">Social Media</span>
+    </div>
+    <a class="hero-cta" href="#work">View my work →</a>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- WORK -->
+  <div id="work" style="padding-top:2rem">
+    <p class="section-label">Selected Work</p>
+    <div class="work-grid">
+
+      <!-- Movie Thumbnail -->
+      <div class="work-card">
+        <div class="card-arrow">→</div>
+        <div class="work-thumb">
+          <svg viewBox="0 0 320 200" xmlns="http://www.w3.org/2000/svg">
+            <rect width="320" height="200" fill="#38240D"/>
+            <rect x="0" y="0" width="320" height="200" fill="#713600" opacity="0.28"/>
+            <rect x="0" y="150" width="320" height="50" fill="#38240D" opacity="0.7"/>
+            <rect x="30" y="137" width="105" height="1.5" fill="#C05800" opacity="0.9"/>
+            <text x="30" y="122" font-family="Georgia,serif" font-size="23" font-weight="bold" fill="#FDFBD4" letter-spacing="3">NOCTURNE</text>
+            <text x="30" y="142" font-family="Arial,sans-serif" font-size="9" fill="#C05800" letter-spacing="4">OFFICIAL TRAILER 2025</text>
+            <circle cx="244" cy="88" r="36" fill="none" stroke="#C05800" stroke-width="1" opacity="0.5"/>
+            <circle cx="244" cy="88" r="25" fill="none" stroke="#FDFBD4" stroke-width="0.4" opacity="0.2"/>
+            <polygon points="232,76 232,100 258,88" fill="#C05800" opacity="0.85"/>
+          </svg>
+        </div>
+        <div class="card-body">
+          <p class="card-tag" style="color:#C05800">Thumbnail Design</p>
+          <p class="card-title">Movie Thumbnail</p>
+          <p class="card-desc">Cinematic thumbnail with dramatic lighting and typographic hierarchy for a film trailer.</p>
+        </div>
+      </div>
+
+      <!-- Song Poster -->
+      <div class="work-card">
+        <div class="card-arrow">→</div>
+        <div class="work-thumb">
+          <svg viewBox="0 0 320 200" xmlns="http://www.w3.org/2000/svg">
+            <rect width="320" height="200" fill="#FDFBD4"/>
+            <circle cx="160" cy="90" r="60" fill="none" stroke="#713600" stroke-width="0.5" opacity="0.25"/>
+            <circle cx="160" cy="90" r="43" fill="none" stroke="#C05800" stroke-width="0.5" opacity="0.4"/>
+            <circle cx="160" cy="90" r="26" fill="#C05800" opacity="0.08"/>
+            <circle cx="160" cy="90" r="10" fill="#C05800" opacity="0.45"/>
+            <circle cx="160" cy="90" r="4"  fill="#38240D"/>
+            <path d="M186 66 L186 80 L198 73 Z" fill="#713600" opacity="0.65"/>
+            <text x="160" y="168" font-family="Georgia,serif" font-size="14" fill="#38240D" text-anchor="middle" letter-spacing="6">ECHOES</text>
+            <text x="160" y="182" font-family="Arial,sans-serif" font-size="8" fill="#713600" text-anchor="middle" letter-spacing="4">SINGLE — 2025</text>
+            <line x1="102" y1="158" x2="128" y2="158" stroke="#C05800" stroke-width="0.5" opacity="0.5"/>
+            <line x1="192" y1="158" x2="218" y2="158" stroke="#C05800" stroke-width="0.5" opacity="0.5"/>
+          </svg>
+        </div>
+        <div class="card-body">
+          <p class="card-tag" style="color:#713600">Poster Design</p>
+          <p class="card-title">Song Poster</p>
+          <p class="card-desc">Minimal music release poster with geometric composition and a warm tonal palette.</p>
+        </div>
+      </div>
+
+      <!-- YouTube Poster -->
+      <div class="work-card">
+        <div class="card-arrow">→</div>
+        <div class="work-thumb">
+          <svg viewBox="0 0 320 200" xmlns="http://www.w3.org/2000/svg">
+            <rect width="320" height="200" fill="#713600"/>
+            <rect x="0" y="0" width="155" height="200" fill="#38240D" opacity="0.45"/>
+            <rect x="20" y="70" width="3.5" height="60" fill="#FDFBD4" opacity="0.8"/>
+            <text x="36" y="94"  font-family="Arial,sans-serif" font-size="10" font-weight="bold" fill="#C05800" letter-spacing="2">EPISODE 12</text>
+            <text x="36" y="118" font-family="Georgia,serif" font-size="27" font-weight="bold" fill="#FDFBD4">THE TRUTH</text>
+            <text x="36" y="139" font-family="Georgia,serif" font-size="18" fill="#FDFBD4" opacity="0.55">ABOUT DESIGN</text>
+            <rect x="244" y="72" width="57" height="52" rx="5" fill="#C05800" opacity="0.18" stroke="#C05800" stroke-width="0.5"/>
+            <polygon points="260,95 260,110 278,102" fill="#FDFBD4" opacity="0.9"/>
+          </svg>
+        </div>
+        <div class="card-body">
+          <p class="card-tag" style="color:#C05800">Thumbnail Design</p>
+          <p class="card-title">Youtube Poster</p>
+          <p class="card-desc">High-impact YouTube thumbnail designed to maximise click-through with bold type and contrast.</p>
+        </div>
+      </div>
+
+      <!-- Food Social -->
+      <div class="work-card">
+        <div class="card-arrow">→</div>
+        <div class="work-thumb">
+          <svg viewBox="0 0 320 200" xmlns="http://www.w3.org/2000/svg">
+            <rect width="320" height="200" fill="#FDFBD4"/>
+            <circle cx="160" cy="88" r="56" fill="#C05800" opacity="0.07"/>
+            <circle cx="160" cy="88" r="40" fill="none" stroke="#C05800" stroke-width="0.5" opacity="0.4"/>
+            <circle cx="160" cy="88" r="24" fill="none" stroke="#713600" stroke-width="0.5" opacity="0.25"/>
+            <path d="M148 78 Q160 58 172 78 Q186 98 160 112 Q134 98 148 78Z" fill="#C05800" opacity="0.45"/>
+            <path d="M153 80 Q160 66 167 80 Q174 94 160 104 Q146 94 153 80Z" fill="#713600" opacity="0.35"/>
+            <text x="160" y="152" font-family="Georgia,serif" font-size="15" fill="#38240D" text-anchor="middle" letter-spacing="5">SAFFRON</text>
+            <text x="160" y="167" font-family="Arial,sans-serif" font-size="8" fill="#713600" text-anchor="middle" letter-spacing="4">KITCHEN &amp; CO.</text>
+            <line x1="108" y1="174" x2="136" y2="174" stroke="#C05800" stroke-width="0.5" opacity="0.45"/>
+            <line x1="184" y1="174" x2="212" y2="174" stroke="#C05800" stroke-width="0.5" opacity="0.45"/>
+          </svg>
+        </div>
+        <div class="card-body">
+          <p class="card-tag" style="color:#C05800">Social Media Creative</p>
+          <p class="card-title">Social Media — Food</p>
+          <p class="card-desc">Warm, appetising social media visual for a food brand — crafted for Instagram and Reels covers.</p>
+        </div>
+      </div>
+
+      <!-- Sports Social -->
+      <div class="work-card">
+        <div class="card-arrow">→</div>
+        <div class="work-thumb">
+          <svg viewBox="0 0 320 200" xmlns="http://www.w3.org/2000/svg">
+            <rect width="320" height="200" fill="#38240D"/>
+            <line x1="0" y1="200" x2="320" y2="0" stroke="#713600" stroke-width="60" opacity="0.35"/>
+            <line x1="-40" y1="200" x2="280" y2="0" stroke="#C05800" stroke-width="18" opacity="0.12"/>
+            <rect x="22" y="24" width="3.5" height="152" fill="#C05800" opacity="0.7"/>
+            <text x="38" y="82"  font-family="Arial,sans-serif" font-size="40" font-weight="900" fill="#FDFBD4" letter-spacing="-1">WIN</text>
+            <text x="38" y="120" font-family="Arial,sans-serif" font-size="40" font-weight="900" fill="#C05800" letter-spacing="-1">BIG.</text>
+            <text x="38" y="148" font-family="Arial,sans-serif" font-size="9" fill="#713600" letter-spacing="4">SEASON 2025 — GAME ON</text>
+            <circle cx="268" cy="100" r="30" fill="none" stroke="#713600" stroke-width="0.5" opacity="0.5"/>
+            <circle cx="268" cy="100" r="18" fill="none" stroke="#C05800" stroke-width="0.5" opacity="0.4"/>
+          </svg>
+        </div>
+        <div class="card-body">
+          <p class="card-tag" style="color:#713600">Social Media Creative</p>
+          <p class="card-title">Social Media — Sports</p>
+          <p class="card-desc">Bold, energetic social media graphic for a sports brand — built for hype and shareability.</p>
+        </div>
+      </div>
+
+      <!-- Brand Logo -->
+      <div class="work-card">
+        <div class="card-arrow">→</div>
+        <div class="work-thumb">
+          <svg viewBox="0 0 320 200" xmlns="http://www.w3.org/2000/svg">
+            <rect width="320" height="200" fill="#FDFBD4"/>
+            <rect x="116" y="52" width="88" height="88" rx="3" fill="#C05800" opacity="0.04" stroke="#713600" stroke-width="1.2"/>
+            <line x1="116" y1="96" x2="204" y2="96" stroke="#713600" stroke-width="0.6" opacity="0.4"/>
+            <line x1="160" y1="52" x2="160" y2="140" stroke="#713600" stroke-width="0.6" opacity="0.4"/>
+            <circle cx="160" cy="96" r="16" fill="#C05800" opacity="0.12" stroke="#C05800" stroke-width="0.8"/>
+            <circle cx="160" cy="96" r="5"  fill="#713600" opacity="0.6"/>
+            <text x="160" y="161" font-family="Georgia,serif" font-size="11" fill="#38240D" text-anchor="middle" letter-spacing="6">NORTHE</text>
+            <text x="160" y="174" font-family="Arial,sans-serif" font-size="7" fill="#713600" text-anchor="middle" letter-spacing="3" opacity="0.55">STUDIO</text>
+          </svg>
+        </div>
+        <div class="card-body">
+          <p class="card-tag" style="color:#713600">Brand &amp; Logo</p>
+          <p class="card-title">Logo Design</p>
+          <p class="card-desc">Geometric logomark and brand identity for a design studio — clean, timeless, structured.</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- STATS -->
+  <div class="stats-band">
+    <div class="stat-item">
+      <p class="stat-num">50+</p>
+      <p class="stat-label">Projects Delivered</p>
+    </div>
+    <div class="stat-item">
+      <p class="stat-num">30+</p>
+      <p class="stat-label">Happy Clients</p>
+    </div>
+    <div class="stat-item">
+      <p class="stat-num">4+</p>
+      <p class="stat-label">Years Experience</p>
+    </div>
+  </div>
+
+  <!-- ABOUT -->
+  <div id="about" style="padding-top:1rem;margin-bottom:2.5rem">
+    <p class="section-label">About</p>
+    <div class="about-grid">
+      <div>
+        <p class="about-text">I'm a graphic designer who turns ideas into <em>visuals that move people</em> — from brand identities to scroll-stopping social creatives.</p>
+        <p class="about-note">Based in Andhra Pradesh, India. Available for freelance projects worldwide — posters, thumbnails, social media creatives, and full brand identities.</p>
+      </div>
+      <div>
+        <p class="detail-label">Specialty</p>
+        <p class="detail-val">Brand Identity · Posters · Thumbnails · Social Media</p>
+        <p class="detail-label">Based in</p>
+        <p class="detail-val">Andhra Pradesh, India</p>
+        <p class="detail-label">Available for</p>
+        <p class="detail-val">Freelance &amp; Remote Projects</p>
+        <p class="detail-label">Email</p>
+        <p class="detail-val"><a href="mailto:ch.creativearts@gmail.com" style="color:var(--accent);text-decoration:none;">ch.creativearts@gmail.com</a></p>
+      </div>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- SERVICES -->
+  <div style="padding-top:2rem;margin-bottom:2.5rem">
+    <p class="section-label">Services</p>
+    <div class="services-list">
+      <div class="service-item">
+        <div class="service-dot" style="background:#C05800"></div>
+        <p class="service-name">Brand &amp; Logo</p>
+        <p class="service-desc">Logos, wordmarks, visual identity systems.</p>
+      </div>
+      <div class="service-item">
+        <div class="service-dot" style="background:#713600"></div>
+        <p class="service-name">Thumbnails</p>
+        <p class="service-desc">Movie, YouTube &amp; video thumbnails.</p>
+      </div>
+      <div class="service-item">
+        <div class="service-dot" style="background:#38240D"></div>
+        <p class="service-name">Poster Design</p>
+        <p class="service-desc">Music, event &amp; promotional posters.</p>
+      </div>
+      <div class="service-item">
+        <div class="service-dot" style="background:#C05800"></div>
+        <p class="service-name">Social Creatives</p>
+        <p class="service-desc">Food, sports &amp; brand social media graphics.</p>
+      </div>
+      <div class="service-item">
+        <div class="service-dot" style="background:#713600"></div>
+        <p class="service-name">Brand Collateral</p>
+        <p class="service-desc">Business cards, stationery &amp; print.</p>
+      </div>
+      <div class="service-item">
+        <div class="service-dot" style="background:#38240D"></div>
+        <p class="service-name">Brand Strategy</p>
+        <p class="service-desc">Positioning, tone &amp; visual direction.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- CONTACT -->
+  <div id="contact" class="contact-wrap">
+    <p class="section-label">Contact</p>
+    <h2 class="contact-title">Have a project in mind?<br>Let's <em>create</em> together.</h2>
+    <div class="contact-row">
+      <a class="contact-email" href="mailto:ch.creativearts@gmail.com">ch.creativearts@gmail.com</a>
+      <div class="social-links">
+        <a href="#">Instagram</a>
+        <a href="#">Behance</a>
+        <a href="#">LinkedIn</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <div class="footer">
+    <p class="footer-copy">© 2026 Ch Creates. All rights reserved.</p>
+    <p class="footer-name">Ch Creates</p>
+  </div>
+
+</div>
+</body>
+</html>
